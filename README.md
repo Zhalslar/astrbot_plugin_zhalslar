@@ -6,7 +6,7 @@
 ![:name](https://count.getloli.com/@astrbot_plugin_zhalslar?name=astrbot_plugin_search_video&theme=minecraft&padding=6&offset=0&align=top&scale=1&pixelated=1&darkmode=auto)
 
 
-# astrbot_plugin_search_zhalslar
+# astrbot_plugin_zhalslar
 
 _✨ [astrbot](https://github.com/AstrBotDevs/AstrBot) Zhalslar插件整合包 ✨_  
 
