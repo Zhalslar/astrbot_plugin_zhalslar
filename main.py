@@ -25,7 +25,7 @@ def normalize_repo_url(item: str) -> str:
 
 
 def get_plugin_short_name(item: str) -> str:
-    """提取插件简短名称，如 zt"""
+    """提取插件简短名称"""
     clean = item.strip().rstrip("/").lower().split("/")[-1]
     if clean.endswith(".git"):
         clean = clean[:-4]
@@ -149,7 +149,7 @@ class ZhalslarBundlePlugin(Star):
         if event:
             yield event.plain_result(result_msg)
 
-    @filter.command_group("zhalslar")
+    @filter.command_group("zsl")
     def zhalslar_group(self):
         pass
 
