@@ -1,0 +1,7 @@
+name: astrbot_plugin_zhalslar
+display_name: Zhalslar插件全家桶
+desc: Zhalslar插件整合包，一键安装全套实用插件
+help: 使用 /zhalslar install 一键安装/更新所有捆绑插件；/zhalslar list 查看捆绑插件列表
+version: v1.0.0
+author: Zhalslar
+repo: https://github.com/Zhalslar/astrbot_plugin_zhalslar

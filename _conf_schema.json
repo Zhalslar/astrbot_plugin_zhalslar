@@ -1,0 +1,51 @@
+{
+  "auto_install_on_startup": {
+    "description": "启动时自动安装缺失的捆绑插件",
+    "type": "bool",
+    "default": true,
+    "hint": "开启后，Bot启动时会自动检查并安装未安装的捆绑插件"
+  },
+  "only_admin": {
+    "description": "仅管理员可用本插件命令",
+    "type": "bool",
+    "default": true,
+    "hint": "开启后仅管理员可执行 /zhalslar 命令"
+  },
+  "bundle_plugins": {
+    "description": "捆绑插件仓库地址列表",
+    "type": "list",
+    "default": [
+      "https://github.com/Zhalslar/astrbot_plugin_apis",
+      "https://github.com/Zhalslar/astrbot_plugin_box",
+      "https://github.com/Zhalslar/astrbot_plugin_broadcast",
+      "https://github.com/Zhalslar/astrbot_plugin_cube",
+      "https://github.com/Zhalslar/astrbot_plugin_emoji_like",
+      "https://github.com/Zhalslar/astrbot_plugin_extract",
+      "https://github.com/Zhalslar/astrbot_plugin_lottery",
+      "https://github.com/Zhalslar/astrbot_plugin_memelite",
+      "https://github.com/Zhalslar/astrbot_plugin_minesweeper",
+      "https://github.com/Zhalslar/astrbot_plugin_multimsg",
+      "https://github.com/Zhalslar/astrbot_plugin_music",
+      "https://github.com/Zhalslar/astrbot_plugin_nobot",
+      "https://github.com/Zhalslar/astrbot_plugin_outputpro",
+      "https://github.com/Zhalslar/astrbot_plugin_parser",
+      "https://github.com/Zhalslar/astrbot_plugin_password",
+      "https://github.com/Zhalslar/astrbot_plugin_pokepro",
+      "https://github.com/Zhalslar/astrbot_plugin_portrayal",
+      "https://github.com/Zhalslar/astrbot_plugin_qqadmin",
+      "https://github.com/Zhalslar/astrbot_plugin_qqcall",
+      "https://github.com/Zhalslar/astrbot_plugin_qqwebui",
+      "https://github.com/Zhalslar/astrbot_plugin_qun_album",
+      "https://github.com/Zhalslar/astrbot_plugin_qzone",
+      "https://github.com/Zhalslar/astrbot_plugin_relationship",
+      "https://github.com/Zhalslar/astrbot_plugin_reread",
+      "https://github.com/Zhalslar/astrbot_plugin_restart",
+      "https://github.com/Zhalslar/astrbot_plugin_roulette",
+      "https://github.com/Zhalslar/astrbot_plugin_search_video",
+      "https://github.com/Zhalslar/astrbot_plugin_wakepro",
+      "https://github.com/Zhalslar/astrbot_plugin_worldbook",
+      "https://github.com/Zhalslar/astrbot_plugin_zt"
+    ],
+    "hint": "需要自动捆绑安装的插件 Git 仓库链接"
+  }
+}
