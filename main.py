@@ -1,9 +1,12 @@
 import asyncio
 import os
+import yaml
 from astrbot.api.event import filter
 from astrbot.api.star import Context, Star
 from astrbot.core.config.astrbot_config import AstrBotConfig
 from astrbot.core.platform.astr_message_event import AstrMessageEvent
+from astrbot.core.star.star import star_registry
+from astrbot.core.utils.astrbot_path import get_astrbot_plugin_path
 from astrbot.api import logger
 
 
@@ -25,19 +28,45 @@ class ZhalslarBundlePlugin(Star):
         await self._install_missing_plugins()
 
     def _get_installed_repo_urls(self) -> set[str]:
-        installed_urls = set()
-        pm = getattr(self.context, "_star_manager", None)
-        if not pm:
-            return installed_urls
+        installed_identifiers = set()
 
-        for star in pm.stars:
-            repo = getattr(star, "repo", None)
+        # 1. 从运行时注册的 star_registry 获取
+        for metadata in star_registry:
+            repo = getattr(metadata, "repo", None)
             if repo:
                 clean = repo.strip().rstrip("/").lower()
-                installed_urls.add(clean)
-                name = clean.split("/")[-1]
-                installed_urls.add(name)
-        return installed_urls
+                installed_identifiers.add(clean)
+                installed_identifiers.add(clean.split("/")[-1])
+            root_dir = getattr(metadata, "root_dir_name", None)
+            if root_dir:
+                installed_identifiers.add(root_dir.lower())
+            if metadata.name:
+                installed_identifiers.add(metadata.name.lower())
+
+        # 2. 从本地插件存储目录双重兜底
+        pm = getattr(self.context, "_star_manager", None)
+        plugin_path = getattr(pm, "plugin_store_path", None) or get_astrbot_plugin_path()
+        if os.path.exists(plugin_path):
+            for d in os.listdir(plugin_path):
+                installed_identifiers.add(d.lower())
+                meta_file = os.path.join(plugin_path, d, "metadata.yaml")
+                if os.path.isfile(meta_file):
+                    try:
+                        with open(meta_file, "r", encoding="utf-8") as f:
+                            data = yaml.safe_load(f)
+                            if isinstance(data, dict):
+                                repo = data.get("repo")
+                                if repo:
+                                    clean = repo.strip().rstrip("/").lower()
+                                    installed_identifiers.add(clean)
+                                    installed_identifiers.add(clean.split("/")[-1])
+                                name = data.get("name")
+                                if name:
+                                    installed_identifiers.add(name.lower())
+                    except Exception:
+                        pass
+
+        return installed_identifiers
 
     async def _install_missing_plugins(self, event: AstrMessageEvent = None):
         pm = getattr(self.context, "_star_manager", None)
