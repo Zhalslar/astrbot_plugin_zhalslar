@@ -5,6 +5,7 @@ from astrbot.api.event import filter
 from astrbot.api.star import Context, Star
 from astrbot.core.config.astrbot_config import AstrBotConfig
 from astrbot.core.platform.astr_message_event import AstrMessageEvent
+from astrbot.core.star.filter.permission import PermissionType
 from astrbot.core.star.star import star_registry
 from astrbot.core.utils.astrbot_path import get_astrbot_plugin_path
 from astrbot.api import logger
@@ -39,7 +40,6 @@ class ZhalslarBundlePlugin(Star):
         self.config = config
         self.context = context
         self.auto_install = self.config.get("auto_install_on_startup", True)
-        self.only_admin = self.config.get("only_admin", True)
         raw_plugins = self.config.get("bundle_plugins", [])
         self.bundle_plugins = [normalize_repo_url(p) for p in raw_plugins if str(p).strip()]
 
@@ -154,12 +154,9 @@ class ZhalslarBundlePlugin(Star):
         pass
 
     @zhalslar_group.command("install")
+    @filter.permission_type(PermissionType.ADMIN)
     async def install_cmd(self, event: AstrMessageEvent, plugin_name: str = ""):
         """一键安装/更新所有捆绑插件，或指定安装单个插件（如：/zhalslar install zt）"""
-        if self.only_admin and not event.is_admin():
-            yield event.plain_result("只有管理员可以使用该指令。")
-            return
-
         target_urls = None
         if plugin_name and plugin_name.strip():
             target_urls = [normalize_repo_url(plugin_name.strip())]
@@ -168,13 +165,11 @@ class ZhalslarBundlePlugin(Star):
             yield res
 
     @zhalslar_group.command("list")
+    @filter.permission_type(PermissionType.ADMIN)
     async def list_cmd(self, event: AstrMessageEvent):
         """查看捆绑插件列表"""
-        if self.only_admin and not event.is_admin():
-            yield event.plain_result("只有管理员可以使用该指令。")
-            return
         installed = self._get_installed_identifiers()
-        lines = ["=== Zhalslar 捆绑插件列表 ==="]
+        lines = ["=== 饰乐全家桶 插件列表 ==="]
         for url in self.bundle_plugins:
             norm_url = normalize_repo_url(url)
             short_name = get_plugin_short_name(norm_url)

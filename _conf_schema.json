@@ -41,11 +41,5 @@
       "worldbook",
       "zt"
     ]
-  },
-  "only_admin": {
-    "type": "bool",
-    "description": "仅管理员可用本插件命令",
-    "hint": "开启后仅管理员可执行 /zhalslar 命令",
-    "default": true
   }
 }
