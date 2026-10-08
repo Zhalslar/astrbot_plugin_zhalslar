@@ -15,7 +15,7 @@ _✨ [AstrBot](https://github.com/Soulter/AstrBot) Zhalslar 插件全家桶整�
 
 ## 🤝 Zhalslar 介绍
 
-一个人类，会写很多有趣且实用的插件，目前已上架 30+ 个 AstrBot 插件。
+一个人类，会写很多有趣且实用的插件，目前已上架 50+ 个 AstrBot 插件。
 
 ## 📦 特性与安装
 
@@ -34,15 +34,14 @@ _✨ [AstrBot](https://github.com/Soulter/AstrBot) Zhalslar 插件全家桶整�
 | 配置项 | 类型 | 默认值 | 说明 |
 | :--- | :--- | :--- | :--- |
 | `auto_install_on_startup` | bool | `true` | Bot 启动时是否自动检查并安装未安装的捆绑插件 |
-| `only_admin` | bool | `true` | 是否仅管理员可用本插件命令 |
 | `bundle_plugins` | list | 默认包含全套插件 | 捆绑插件的 Git 仓库 URL 列表 |
 
 ## ⌨️ 使用说明
 
 | 命令 | 说明 | 权限 |
 | :--- | :--- | :--- |
-| `/zhalslar install` | 一键检查并安装所有缺失的捆绑插件 | 管理员 |
-| `/zhalslar list` | 查看捆绑插件列表及当前安装状态 | 管理员 |
+| `zsl install` | 一键检查并安装所有缺失的捆绑插件 | 管理员 |
+| `zsl list` | 查看捆绑插件列表及当前安装状态 | 管理员 |
 
 ## 👥 贡献指南
 
