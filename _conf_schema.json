@@ -1,13 +1,13 @@
 {
   "auto_install_on_startup": {
     "type": "bool",
-    "description": "启动时自动安装缺失的捆绑插件",
+    "description": "启动时安装",
     "hint": "开启后，Bot启动时会自动检查并安装未安装的捆绑插件",
     "default": true
   },
   "bundle_plugins": {
     "type": "list",
-    "description": "捆绑插件列表（可填完整URL或插件简写）",
+    "description": "捆绑插件列表",
     "hint": "支持填写完整GitHub链接，或直接简写插件名如 'zt'、'apis'（会自动拼接为 https://github.com/Zhalslar/astrbot_plugin_<name>）",
     "default": [
       "apis",
